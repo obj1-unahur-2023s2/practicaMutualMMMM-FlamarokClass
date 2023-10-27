@@ -1,0 +1,31 @@
+import socios.*
+import viajes.*
+
+describe "Test Socios" {
+	const roque = new Socio(maximoDeActividades=2, edad=20)
+	const playa1= new ViajePlaya(largo=1000)
+	const playa2= new ViajePlaya(largo=2000)
+	const gym1 = new ClasesDeGym()
+	
+	method inicialize() {
+		roque.agregarActividades(playa1)
+		roque.agregarActividades(playa2)
+		roque.agregarActividades(gym1)
+	}
+	
+	test "Roque adorador del sol"{
+		assert.that(roque.adoradorDelSol())
+	}
+	
+	test "Playa 2 es la actividad de esfuerzo"{
+		roque.agregarActividades(playa1)
+		roque.agregarActividades(playa2)
+		assert.equals([playa2],roque.coleccionDeEsfuerzo())
+	}
+	
+	test "Error Roque cantidad de actividades"{
+		roque.agregarActividades(playa1)
+		roque.agregarActividades(playa2)
+		roque.agregarActividades(gym1)	
+	}
+}
